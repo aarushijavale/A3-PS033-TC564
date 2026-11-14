@@ -1,0 +1,6 @@
+dnspython
+fastapi
+uvicorn[standard]
+PyYAML
+pytest
+httpx

@@ -1,0 +1,34 @@
+
+domain: diag.lab.test
+zone_serial: 2026111403
+
+services:
+  - name: latency
+    hostname: latency.diag.lab.test
+    discovery_name: _latency._diag.diag.lab.test
+    ip: 172.20.0.31
+    port: 8443
+    protocol: "http/1.1"
+    version: "1.0"
+    capability: latency-measurement
+    auth_scheme: bearer
+
+  - name: traceroute
+    hostname: traceroute.diag.lab.test
+    discovery_name: _traceroute._diag.diag.lab.test
+    ip: 172.20.0.32
+    port: 8444
+    protocol: "http/1.1"
+    version: "1.0"
+    capability: simulated-traceroute
+    auth_scheme: bearer
+
+  - name: pathmtu
+    hostname: pathmtu.diag.lab.test
+    discovery_name: _pathmtu._diag.diag.lab.test
+    ip: 172.20.0.33
+    port: 8445
+    protocol: "http/1.1"
+    version: "1.0"
+    capability: path-mtu-detection
+    auth_scheme: bearer

@@ -1,0 +1,177 @@
+; File written on Sat Nov 14 11:15:27 2026
+; dnssec-signzone version 9.20.11-0ubuntu0.2-Ubuntu
+diag.lab.test.		3600	IN SOA	ns1.diag.lab.test. admin.diag.lab.test. (
+					2026111404 ; serial
+					3600       ; refresh (1 hour)
+					1800       ; retry (30 minutes)
+					604800     ; expire (1 week)
+					86400      ; minimum (1 day)
+					)
+			3600	RRSIG	SOA 13 3 3600 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					o4su6z1bhpLnp8W7+kwuDQaoQB1LLFN0eNld
+					5+/vJKJy1z8ieqsQvyOMxw4ZBEqUfQyij+pO
+					4JM8Yh7ts8gsew== )
+			3600	NS	ns1.diag.lab.test.
+			3600	RRSIG	NS 13 3 3600 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					hgB5o0e7zbFYljsVhX/zKDi+K14lcJprkxG3
+					K1RcttXcnuv5iCmmoOX+VeOk1A43/eixZaUY
+					gNxeFGBRNcs7EA== )
+			3600	DNSKEY	256 3 13 (
+					y6h7e30t5pz7lQnlMHCyQMWoLErPVhuEk90x
+					lHRhC//H1R+OrzuimbiWhE4aVQMBoQQzXsbL
+					QulE83X5ZsXv2w==
+					) ; ZSK; alg = ECDSAP256SHA256 ; key id = 15586
+			3600	DNSKEY	257 3 13 (
+					Hj+2ZGT6OV2zHPD0jM09emWNwQ5S2GJMNoQo
+					e/resNfCqNyHrK/i6y0yx/pc8PF76Ionn8p0
+					7tyTeAvxZK7A8A==
+					) ; KSK; alg = ECDSAP256SHA256 ; key id = 52419
+			3600	RRSIG	DNSKEY 13 3 3600 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					oO9rzgLatouiASHl22L0iqekuIGKu27dDlbW
+					a7CkL7nTYp89Atbq6FjORsnrKgKdb38jqO9v
+					FzE8W6ZAtDU4hQ== )
+			3600	RRSIG	DNSKEY 13 3 3600 (
+					20261214101527 20261114101527 52419 diag.lab.test.
+					I9MyJkpxdd/mug3T8Ad9pdLTowo6Zy0KqOdk
+					yNauTuxBSidbM8jDUXEbHxp6fXheTX6HpZ3d
+					VpnhWNFNvtH0pw== )
+			0	NSEC3PARAM 1 0 1 A1B2C3D4
+			0	RRSIG	NSEC3PARAM 13 3 0 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					7NBykqmKu4Lp0X2OVB7clc28i4mRZgw6l3Qi
+					DXKWhK743UlNQ3qPHEtYg8eqI4/nbseTsJ3K
+					GTsjFNMYJ8+ppA== )
+_latency._diag.diag.lab.test. 3600 IN TXT "version=1.0; capability=latency-measurement; auth=bearer"
+			3600	RRSIG	TXT 13 5 3600 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					v8+SH9xloI/jWCavWuf0LLS+zlhPg25crsSe
+					KKc9++vzomTKzvfAqD3YZp3JnqUw2GyRwPq1
+					P0ZD4g3YAMb10g== )
+			3600	SVCB	1 latency.diag.lab.test. alpn="http/1.1" port=8443
+			3600	RRSIG	SVCB 13 5 3600 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					JXqSyWUjSblyFfuKprVGj8KCcpbo3lgh55BA
+					QRWru4YwAInewmIF/oIMNtg57mDXk0k0HY6e
+					8BmB4OVdgf6PHw== )
+_pathmtu._diag.diag.lab.test. 3600 IN TXT "version=1.0; capability=path-mtu-detection; auth=bearer"
+			3600	RRSIG	TXT 13 5 3600 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					vrhtUd2qFu7O2QBRRyaSoT6ZulvElSJdyP3c
+					x0F1paarChUXOT9PhPeO8wAQoLyPjL01jbCg
+					w0U1WVMc0+xeIA== )
+			3600	SVCB	1 pathmtu.diag.lab.test. alpn="http/1.1" port=8445
+			3600	RRSIG	SVCB 13 5 3600 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					gwhH8cbYWHYSqgtmKmM/ZzWT3jkYVuH4MBVp
+					v+gu/nKrwNIw3KHGq579a1g6ND5qF21RR7Tg
+					HsFnsC4Iym5GFg== )
+_traceroute._diag.diag.lab.test. 3600 IN TXT "version=1.0; capability=simulated-traceroute; auth=bearer"
+			3600	RRSIG	TXT 13 5 3600 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					V0j9YnPgyou4JCQKFxky8lIOzFAyZaD0qQ8f
+					wzUML6JO5FYSd1vn4wUY+toYW8xpG720yz7M
+					emoAZ7cYsp9zZQ== )
+			3600	SVCB	1 traceroute.diag.lab.test. alpn="http/1.1" port=8444
+			3600	RRSIG	SVCB 13 5 3600 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					3yaOi0AwMnhtxxAat337K7S7jsXJMCQFqlTw
+					jlhBZzXg5EBeAIRIWgrLM5xkRla6VbVocMkr
+					1OdcM+q1ALp+rw== )
+latency.diag.lab.test.	3600	IN A	172.20.0.31
+			3600	RRSIG	A 13 4 3600 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					fOUGWGa1hbBOZvmCgvyST7ldK5IClannKIEN
+					NDPbigO9JYM55tU0BhX6fTnMrdYpUFDs3oKx
+					3abx7h8A64mtIA== )
+ns1.diag.lab.test.	3600	IN A	172.20.0.10
+			3600	RRSIG	A 13 4 3600 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					AB+wp8bTyvBZXtBrcuoePsA8TqqjyVboHhNu
+					CKPvwbCqUP5GUVwCJ0KaGHAGZ2i8FyhWno5z
+					yHrRhBl8dOeD7A== )
+pathmtu.diag.lab.test.	3600	IN A	172.20.0.33
+			3600	RRSIG	A 13 4 3600 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					QfFuquxPoYMO44TcGtIHdBl419skP64ydJqj
+					4pnxe1Jhka0cpbg8YT8zm/pnBT2kq2vhyhl2
+					xE0rj2fTgpPtuA== )
+traceroute.diag.lab.test. 3600	IN A	172.20.0.32
+			3600	RRSIG	A 13 4 3600 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					n/n1sBXToQMA6Mr+nE6w9RjGRrMIp371QxBL
+					te0FeZFPhNyk66ZL6w7ESL6K69Xlr7Xjn54u
+					iVhVbkcboRKEnw== )
+0N8LJ3CPOLQDS0VQ5NR8JO55FGVDU2CG.diag.lab.test.	3600 IN	NSEC3 1 0 1 A1B2C3D4 (
+					6H07160ERVDLO18VD5IGPIBTK3240F8B
+					TXT RRSIG SVCB )
+			3600	RRSIG	NSEC3 13 4 3600 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					XjBcPcrik3riXA9eWTlMSu+JO38e82wraekz
+					wN3xE+ueC986pWmKLKa9RbfX06ROeSAx5DsG
+					13X+b9KEP84OKA== )
+6H07160ERVDLO18VD5IGPIBTK3240F8B.diag.lab.test.	3600 IN	NSEC3 1 0 1 A1B2C3D4 (
+					8USJ2RA3S4NJ8GISGI1O4MNFEGUG57DM
+					A RRSIG )
+			3600	RRSIG	NSEC3 13 4 3600 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					+71MlhUseXxx9dDLfFi9S87uhWx/3tw8gZSO
+					qIL/l2BUifeSDKe1BvbMouIbV9gCvLXblTSN
+					jVqf/+XZDiBYdw== )
+8USJ2RA3S4NJ8GISGI1O4MNFEGUG57DM.diag.lab.test.	3600 IN	NSEC3 1 0 1 A1B2C3D4 (
+					B0IDL8P2S927FS305574L5AG1HKR0L2E )
+			3600	RRSIG	NSEC3 13 4 3600 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					wnCFAPxvReqxGOy9RYXqhIta5jEhpcUhDJO2
+					PEv/KtLMVLumHqv2me3L5IxFCtVajOqDV8IY
+					wHzbKQMArfUH9w== )
+B0IDL8P2S927FS305574L5AG1HKR0L2E.diag.lab.test.	3600 IN	NSEC3 1 0 1 A1B2C3D4 (
+					EHC5M8TQSLJTD94N61AP4F8Q47S4D3KS
+					TXT RRSIG SVCB )
+			3600	RRSIG	NSEC3 13 4 3600 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					T7c20K8HG2KBXghLSYFPA0NMROMEn0NxFqVG
+					d103XSHuS5BBiucLOEH3iAh6qkGHWsmOmCfI
+					bnlAUH2ipr1u8Q== )
+EHC5M8TQSLJTD94N61AP4F8Q47S4D3KS.diag.lab.test.	3600 IN	NSEC3 1 0 1 A1B2C3D4 (
+					GM2RQKUUPIVNJ26FIM1SR8CGNF1FR610
+					A RRSIG )
+			3600	RRSIG	NSEC3 13 4 3600 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					N0n9IBUauyzUMCaTMGW1OyRro+NWDc1E63+C
+					EFPm0+qGqCALiaqv1UtrvfNwltjTrv8jMhEG
+					iDTUrG7MjAfkbA== )
+GM2RQKUUPIVNJ26FIM1SR8CGNF1FR610.diag.lab.test.	3600 IN	NSEC3 1 0 1 A1B2C3D4 (
+					K9K015NDRRJGFJU2U6184D1979TCG4M6
+					A RRSIG )
+			3600	RRSIG	NSEC3 13 4 3600 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					6uwwdXt7KadxGF3fnPx+E9oYMRUbxOtPDEMg
+					Iwku4W05WOLzTzJ8X7WnztVPggjq769XZHXy
+					NRoy6pH4nV1ORg== )
+K9K015NDRRJGFJU2U6184D1979TCG4M6.diag.lab.test.	3600 IN	NSEC3 1 0 1 A1B2C3D4 (
+					N89I1SIUD8BQ98HC626UGB8T2PDFF6IS
+					NS SOA RRSIG DNSKEY NSEC3PARAM )
+			3600	RRSIG	NSEC3 13 4 3600 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					5EVNEdA/Ed49C0tfEq8knXTm7/F9QYRB63ZT
+					wj0TMadgvEHZiml8qwrWV6xxIrzAGgY4c3VT
+					y0unYEFR6dW+gQ== )
+N89I1SIUD8BQ98HC626UGB8T2PDFF6IS.diag.lab.test.	3600 IN	NSEC3 1 0 1 A1B2C3D4 (
+					RB3K2T16O3MM2F3EENRCAS9O6F6F9POU
+					TXT RRSIG SVCB )
+			3600	RRSIG	NSEC3 13 4 3600 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					RuSjmt9QAuWV24m/LSTOg2oh8I4E1RusKhQC
+					CdC9SFvsm/vUygICFZ+i7n++0kndJB2SG8qn
+					sptTZKxiGoJ2uw== )
+RB3K2T16O3MM2F3EENRCAS9O6F6F9POU.diag.lab.test.	3600 IN	NSEC3 1 0 1 A1B2C3D4 (
+					0N8LJ3CPOLQDS0VQ5NR8JO55FGVDU2CG
+					A RRSIG )
+			3600	RRSIG	NSEC3 13 4 3600 (
+					20261214101527 20261114101527 15586 diag.lab.test.
+					d5ClJq3/782/mbY6l+iwCNs+mgjyaCa56Qzf
+					g1AAW8gyQOu21hxN539Hcj98pAMn1RIdZKLc
+					EERAtdDqTpTJ7A== )

@@ -1,0 +1,93 @@
+
+services:
+  bind9:
+    image: ubuntu/bind9:latest
+    container_name: aiori-bind9
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:15353:53/udp"
+      - "127.0.0.1:15353:53/tcp"
+    volumes:
+      - ./zone/named.conf:/etc/bind/named.conf:ro
+      - ./zone/signed/db.diag.lab.test.signed:/etc/bind/db.diag.lab.test.signed:ro
+    networks:
+      aiori_net:
+        ipv4_address: 172.20.0.10
+
+  unbound:
+    image: mvance/unbound:latest
+    container_name: aiori-unbound
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:15354:53/udp"
+      - "127.0.0.1:15354:53/tcp"
+    volumes:
+      - ./resolver/unbound.conf:/opt/unbound/etc/unbound/unbound.conf:ro
+      - ./security/trust/Kdiag.lab.test.+013+52419.key:/opt/unbound/etc/unbound/trust-anchor.key:ro
+    networks:
+      aiori_net:
+        ipv4_address: 172.20.0.20
+
+  latency:
+    build:
+      context: .
+      dockerfile: services/latency/Dockerfile
+    container_name: aiori-latency
+    environment:
+      API_TOKEN: ${API_TOKEN:?Set_API_TOKEN_in_.env}
+    networks:
+      aiori_net:
+        ipv4_address: 172.20.0.31
+        aliases:
+          - latency.diag.lab.test
+    restart: unless-stopped
+
+  traceroute:
+    build:
+      context: .
+      dockerfile: services/traceroute/Dockerfile
+    container_name: aiori-traceroute
+    environment:
+      API_TOKEN: ${API_TOKEN:?Set_API_TOKEN_in_.env}
+    networks:
+      aiori_net:
+        ipv4_address: 172.20.0.32
+        aliases:
+          - traceroute.diag.lab.test
+    restart: unless-stopped
+
+  pathmtu:
+    build:
+      context: .
+      dockerfile: services/path_mtu/Dockerfile
+    container_name: aiori-pathmtu
+    environment:
+      API_TOKEN: ${API_TOKEN:?Set_API_TOKEN_in_.env}
+    networks:
+      aiori_net:
+        ipv4_address: 172.20.0.33
+        aliases:
+          - pathmtu.diag.lab.test
+    restart: unless-stopped
+
+  client:
+    image: python:3.12-slim
+    container_name: aiori-client
+    working_dir: /app
+    environment:
+      DNS_SERVER: 172.20.0.20
+      DNS_PORT: "53"
+      API_TOKEN: ${API_TOKEN:?Set_API_TOKEN_in_.env}
+    volumes:
+      - ./client:/app
+    command: sh -c "pip install dnspython requests && sleep infinity"
+    networks:
+      aiori_net:
+        ipv4_address: 172.20.0.40
+
+networks:
+  aiori_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24

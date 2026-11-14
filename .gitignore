@@ -1,0 +1,24 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# DNSSEC private keys
+zone/keys/
+*.private
+
+# Keep the signed DNS zone in Git
+zone/signed/*
+!zone/signed/db.diag.lab.test.signed
+
+# Private certificates
+security/certificates/private/

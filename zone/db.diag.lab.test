@@ -1,0 +1,27 @@
+$TTL 3600
+
+@ IN SOA ns1.diag.lab.test. admin.diag.lab.test. (
+    2026111403
+    3600
+    1800
+    604800
+    86400
+)
+
+@ IN NS ns1.diag.lab.test.
+
+ns1 IN A 172.20.0.10
+
+; Diagnostic service records
+
+latency IN A 172.20.0.31
+_latency._diag.diag.lab.test. IN SVCB 1 latency.diag.lab.test. alpn="http/1.1" port=8443
+_latency._diag.diag.lab.test. IN TXT "version=1.0; capability=latency-measurement; auth=bearer"
+
+traceroute IN A 172.20.0.32
+_traceroute._diag.diag.lab.test. IN SVCB 1 traceroute.diag.lab.test. alpn="http/1.1" port=8444
+_traceroute._diag.diag.lab.test. IN TXT "version=1.0; capability=simulated-traceroute; auth=bearer"
+
+pathmtu IN A 172.20.0.33
+_pathmtu._diag.diag.lab.test. IN SVCB 1 pathmtu.diag.lab.test. alpn="http/1.1" port=8445
+_pathmtu._diag.diag.lab.test. IN TXT "version=1.0; capability=path-mtu-detection; auth=bearer"
