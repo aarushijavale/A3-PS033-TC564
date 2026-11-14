@@ -148,7 +148,7 @@ make test    # or: pytest src/diagmesh/tests
 
 | | Link |
 |---|---|
-| Intro Video | _Add link_ |
+| Intro Video | (https://youtu.be/Q2KIZL3n2Ds) |
 | Live Demo | _Add link_ |
 | Team Introduction Video | _Add link_ |
 
