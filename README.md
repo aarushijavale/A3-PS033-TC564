@@ -160,8 +160,8 @@ make test    # or: pytest src/diagmesh/tests
 
 | Name | Contact |
 |---|---|
-| Aarushi Javale | _Add email_ |
-| Anushka Wadekar | _Add email_ |
+| Aarushi Javale | aarushi.javale@mitwpu.edu.in |
+| Anushka Wadekar | 1262260790.a@mitwpu.edu.in |
 
 ---
 
