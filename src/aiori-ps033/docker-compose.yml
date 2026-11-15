@@ -85,6 +85,29 @@ services:
       aiori_net:
         ipv4_address: 172.20.0.40
 
+  dashboard:
+    build:
+      context: .
+      dockerfile: dashboard/backend/Dockerfile
+    container_name: aiori-dashboard
+    restart: unless-stopped
+    cap_add:
+      - NET_RAW
+    environment:
+      DNS_SERVER: 172.20.0.20
+      DNS_PORT: "53"
+      API_TOKEN: ${API_TOKEN:?Set_API_TOKEN_in_.env}
+    ports:
+      - "127.0.0.1:8000:8000"
+    depends_on:
+      - unbound
+      - latency
+      - traceroute
+      - pathmtu
+    networks:
+      aiori_net:
+        ipv4_address: 172.20.0.50
+
 networks:
   aiori_net:
     driver: bridge
