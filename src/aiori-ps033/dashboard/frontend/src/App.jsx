@@ -64,6 +64,13 @@ const LIVE_SERVICES = [
   },
 ];
 
+const NAV_ITEMS = [
+  { id: "dashboard", label: "Dashboard", icon: "▦" },
+  { id: "diagnostics", label: "Diagnostics", icon: "⌁" },
+  { id: "dns-discovery", label: "DNS Discovery", icon: "◈" },
+  { id: "activity-logs", label: "Activity Logs", icon: "▤" },
+];
+
 function App() {
   const [backend, setBackend] = useState("checking");
   const [mode, setMode] = useState("lab");
@@ -75,6 +82,8 @@ function App() {
   const [host, setHost] = useState("1.1.1.1");
   const [port, setPort] = useState("443");
 
+  const [activeNav, setActiveNav] = useState("dashboard");
+
   const [logs, setLogs] = useState([
     "AIORI diagnostic dashboard initialized.",
     "Waiting for backend connection...",
@@ -82,23 +91,56 @@ function App() {
 
   useEffect(() => {
     checkBackend();
+
     const timer = setInterval(checkBackend, 10000);
+
     return () => clearInterval(timer);
   }, []);
 
   async function checkBackend() {
     try {
-      const response = await fetch("/api/health");
-      if (!response.ok) throw new Error("Backend unavailable");
+      const response = await fetch("/api/health", {
+        cache: "no-store",
+      });
 
-      const data = await response.json();
-      setBackend(data.status === "ok" ? "online" : "offline");
-    } catch {
+      if (!response.ok) {
+        throw new Error("Backend unavailable");
+      }
+
+      // A successful HTTP response means the API is reachable.
+      setBackend("online");
+    } catch (error) {
       setBackend("offline");
     }
   }
 
-  // EXISTING LAB NETWORK TESTS
+  // SIDEBAR NAVIGATION
+  function navigateTo(section) {
+    setActiveNav(section);
+
+    if (section === "dashboard") {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      return;
+    }
+
+    if (section === "dns-discovery") {
+      setMode("lab");
+    }
+
+    const target = document.getElementById(section);
+
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }
+
+  // LAB NETWORK TESTS
   async function runDiagnostic(service) {
     setRunning(`lab-${service.id}`);
 
@@ -315,10 +357,7 @@ function App() {
     const escapeCSV = (value) =>
       `"${String(value ?? "").replace(/"/g, '""')}"`;
 
-    const csv = [
-      headers,
-      ...rows,
-    ]
+    const csv = [headers, ...rows]
       .map((row) => row.map(escapeCSV).join(","))
       .join("\r\n");
 
@@ -354,7 +393,7 @@ function App() {
     mode === "lab" ? results : liveResults;
 
   return (
-    <div className="app-shell">
+    <div className="app-shell" id="dashboard">
 
       <aside className="sidebar">
 
@@ -367,10 +406,25 @@ function App() {
         </div>
 
         <div className="nav-label">WORKSPACE</div>
-        <div className="nav-item active">▦ &nbsp; Dashboard</div>
-        <div className="nav-item">⌁ &nbsp; Diagnostics</div>
-        <div className="nav-item">◈ &nbsp; DNS Discovery</div>
-        <div className="nav-item">▤ &nbsp; Activity Logs</div>
+
+        <nav className="sidebar-nav" aria-label="Main navigation">
+          {NAV_ITEMS.map((item) => (
+            <button
+              type="button"
+              key={item.id}
+              className={`nav-item ${
+                activeNav === item.id ? "active" : ""
+              }`}
+              onClick={() => navigateTo(item.id)}
+              aria-current={
+                activeNav === item.id ? "page" : undefined
+              }
+            >
+              <span className="nav-icon">{item.icon}</span>
+              <span>{item.label}</span>
+            </button>
+          ))}
+        </nav>
 
         <div className="sidebar-bottom">
 
@@ -441,7 +495,7 @@ function App() {
             </p>
           </div>
 
-          <div className="welcome-symbol">⌁</div>
+          <div className="welcome-symbol" aria-hidden="true">⌁</div>
 
         </section>
 
@@ -499,7 +553,7 @@ function App() {
 
         </section>
 
-        <section className="section-heading">
+        <section className="section-heading" id="diagnostics">
 
           <div>
             <div className="eyebrow">
@@ -576,7 +630,7 @@ function App() {
           </>
         )}
 
-        <section className="section-heading">
+        <section className="section-heading" id="dns-discovery">
 
           <div>
             <div className="eyebrow">
@@ -681,7 +735,7 @@ function App() {
 
         </section>
 
-        <section className="logs-section">
+        <section className="logs-section" id="activity-logs">
 
           <div className="logs-header">
 
