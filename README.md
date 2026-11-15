@@ -149,7 +149,7 @@ make test    # or: pytest src/diagmesh/tests
 | | Link |
 |---|---|
 | Intro Video | (https://youtu.be/Q2KIZL3n2Ds) |
-| Live Demo | _Add link_ |
+| Live Demo | https://aiori-ps033-frontend.onrender.com/ |
 | Team Introduction Video | _Add link_ |
 
 ---
