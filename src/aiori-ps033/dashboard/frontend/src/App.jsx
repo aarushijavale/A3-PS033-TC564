@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
 const SERVICES = [
   {
     id: "latency",
@@ -99,7 +101,7 @@ function App() {
 
   async function checkBackend() {
     try {
-      const response = await fetch("/api/health", {
+      const response = await fetch(`${API_BASE_URL}/api/health`, {
         cache: "no-store",
       });
 
@@ -151,7 +153,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `/api/diagnostics/${service.id}`,
+        `${API_BASE_URL}/api/diagnostics/${service.id}`,
         { method: "POST" }
       );
 
@@ -236,7 +238,7 @@ function App() {
       };
 
       const response = await fetch(
-        `/api/live/${service.id}`,
+        `${API_BASE_URL}/api/live/${service.id}`,
         {
           method: "POST",
           headers: {
