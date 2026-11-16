@@ -34,6 +34,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",
         "https://aiori-ps033-frontend.onrender.com",
+        "https://a3-ps-033-tc-564-epculyg18-aarushi-0b18.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
